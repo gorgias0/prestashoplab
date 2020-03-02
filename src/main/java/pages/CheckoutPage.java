@@ -89,7 +89,7 @@ public class CheckoutPage {
             mrsRadio().click();
         firstnameInput().sendKeys(p.firstName);
         lastnameInput().sendKeys(p.lastName);
-        emailInput().sendKeys(p.email);
+        emailInput().sendKeys(p.guestEmail);
         agreeRadio().click();
     }
 

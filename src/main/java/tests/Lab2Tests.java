@@ -20,7 +20,7 @@ public class Lab2Tests {
         driver = new ChromeDriver();
         driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        wait = new WebDriverWait(driver, 20, 100);
+        wait = new WebDriverWait(driver, 20, 300);
     }
 
     @After
@@ -29,11 +29,11 @@ public class Lab2Tests {
     }
 
     /**
-     * As a shopper I want to buy a product without having to sign in
+     * 1. As a one time customer I want to buy a product without having to sign in
      * so that I can save time
-     */
+     **/
     @Test
-    public void testBuy() throws InterruptedException {
+    public void testBuyAsGuest() {
         System.out.println("Running testBuy()");
         FirstPage firstPage = new FirstPage(driver, wait);
         firstPage.tShirtButton().click();
@@ -67,30 +67,77 @@ public class Lab2Tests {
         System.out.println(checkoutPage.paymentConfirmMessage());
     }
 
+    /**
+    * 2. As a customer I want to search for products by name to quickly find what I'm looking for
+     **/
     @Test
     public void testSearch() {
         System.out.println("Running testSearch()");
         FirstPage firstPage = new FirstPage(driver, wait);
         firstPage.searchInput().sendKeys("hum"+ Keys.ENTER);
         SearchResults searchResults = new SearchResults(driver, wait);
-        Assert.assertEquals("Showing 1-5 of 5 item(s)", searchResults.resultText());
+        // asssert that we have some hits
+        Assert.assertTrue(searchResults.resultText().startsWith("Showing"));
         System.out.println(searchResults.resultText());
-        firstPage.searchInput().sendKeys("zxcvb"+ Keys.ENTER);
-        Assert.assertEquals("Sorry for the inconvenience.", searchResults.resultZeroText());
+        firstPage.searchInput().sendKeys("zxcvb83645"+ Keys.ENTER);
+        // assert that we didn't find anything
+        Assert.assertTrue(searchResults.resultZeroText().startsWith("Sorry"));
         System.out.println(searchResults.resultZeroText());
     }
 
+    /**
+     * 3. As a user I want to be able to contact support to get help with my questions
+     **/
     @Test
     public void testContactUs() {
         System.out.println("Running testContactUs()");
         FirstPage firstPage = new FirstPage(driver, wait);
         firstPage.contactLink().click();
         TestPerson p = new TestPerson();
-        ContactPage contactPage = new ContactPage(driver,wait);
+        ContactPage contactPage = new ContactPage(driver, wait);
         contactPage.emailInput().sendKeys(p.email);
         contactPage.messsageInput().sendKeys("My testmessage");
         contactPage.sendButton().click();
         System.out.println(contactPage.confirmText());
         Assert.assertEquals("Your message has been successfully sent to our team.", contactPage.confirmText());
+    }
+
+    /* *
+    * 4. As a customer I want to be able to add and remove products from the shopping cart to customize my order
+    * */
+    @Test
+    public void testShoppingCart() {
+        System.out.println("Running testShoppingCart()");
+        FirstPage firstPage = new FirstPage(driver, wait);
+        firstPage.mugButton().click();
+        ProductPage productPage = new ProductPage(driver, wait);
+        productPage.addToCartButton().click();
+        ShoppingCartModal shoppingCartModal = new ShoppingCartModal(driver, wait);
+        shoppingCartModal.continueShoppingButton().click();
+        firstPage.shoppingCartButton().click();
+        ShoppingCart shoppingCart = new ShoppingCart(driver, wait);
+        // assert one item in shoppingcart
+        Assert.assertEquals("1 item", shoppingCart.itemCountMessage());
+        shoppingCart.deleteButton().click();
+        // assert no item in shoppingcart
+        Assert.assertNotNull(shoppingCart.emptyMessage());
+    }
+
+    /**
+     * 5. As a repeat customer I want to be able to sign in to my saved profile to save time
+     **/
+    @Test
+    public void testSignIn() {
+        FirstPage firstPage = new FirstPage(driver, wait);
+        firstPage.signinButton().click();
+        SignInPage signInPage = new SignInPage(driver, wait);
+        signInPage.signIn(new TestPerson());
+        ProfilePage profilePage = new ProfilePage(driver, wait);
+        // check that we arrived at profilepage
+        Assert.assertTrue(profilePage.informationButton().isDisplayed());
+        profilePage.signOutLink().click();
+        // check that we are signed out
+        Assert.assertTrue(signInPage.signInButton().isDisplayed());
+
     }
 }
