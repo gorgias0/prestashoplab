@@ -7,7 +7,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ShoppingCartModal {
-//#blockcart-modal
 
     private static WebDriver driver;
     private static WebDriverWait wait;
@@ -15,12 +14,10 @@ public class ShoppingCartModal {
     public ShoppingCartModal(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;
         this.wait = wait;
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(
+                "#blockcart-modal > div > div > div.modal-body > div > div.col-md-7 > div > p:nth-child(2) > span.label")));
     }
 
-    public void waitForLoad() {
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("blockcart-modal")));
-
-    }
     public WebElement proceedToCheckoutButton() {
         return wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#blockcart-modal > div > div > div.modal-body > div > div.col-md-7 > div > div > a")));
     }

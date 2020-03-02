@@ -15,3 +15,12 @@ public class TestRunner {
         result.getFailures().forEach( e -> System.out.println(e.getMessage()));
      }
 }
+
+/**
+ * User stories
+ * 1. Make a purchase
+ * 2. Create an account
+ * 3. Add and delete from shopping basket
+ * 4. Search for "hum", clear search
+ * 5. Contact customer service
+ */

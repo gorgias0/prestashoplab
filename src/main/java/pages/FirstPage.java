@@ -33,4 +33,13 @@ public class FirstPage {
     public WebElement newProductsButton() {
         return wait.until(ExpectedConditions.elementToBeClickable(By.id("link-product-page-new-products-1")));
     }
+
+    public WebElement searchInput() {
+        return driver.findElement(By.name("s"));
+    }
+
+    public WebElement contactLink() {
+        driver.manage().window().maximize();
+        return driver.findElement(By.cssSelector("#contact-link > a"));
+    }
 }
