@@ -25,7 +25,7 @@ public class Lab2Tests {
 
     @After
     public void after() {
-        driver.close();
+       // driver.close();
     }
 
     /**
@@ -131,8 +131,12 @@ public class Lab2Tests {
         FirstPage firstPage = new FirstPage(driver, wait);
         firstPage.signinButton().click();
         SignInPage signInPage = new SignInPage(driver, wait);
-        signInPage.signIn(new TestPerson());
+        TestPerson p = new TestPerson();
+        if (!signInPage.signIn(p)) {
+            signInPage.createAcount(p);
+        }
         ProfilePage profilePage = new ProfilePage(driver, wait);
+        firstPage.signinButton().click(); // reload profilepage now that we are logged id (in case we created a new account)
         // check that we arrived at profilepage
         Assert.assertTrue(profilePage.informationButton().isDisplayed());
         profilePage.signOutLink().click();
