@@ -2,9 +2,6 @@ package tests;
 
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import pages.FirstPage;
 
 public class TestRunner {
 

@@ -83,21 +83,21 @@ public class CheckoutPage {
 
 
     public void fillInPersonalInfo(TestPerson p) {
-        if(p.gender.equals("male"))
+        if(p.getGender().equals("male"))
             mrRadio().click();
         else
             mrsRadio().click();
-        firstnameInput().sendKeys(p.firstName);
-        lastnameInput().sendKeys(p.lastName);
-        emailInput().sendKeys(p.guestEmail);
+        firstnameInput().sendKeys(p.getFirstName());
+        lastnameInput().sendKeys(p.getLastName());
+        emailInput().sendKeys(p.getGuestEmail());
         agreeRadio().click();
     }
 
     public void fillInAdresses(TestPerson p) {
-        address1Input().sendKeys(p.address);
-        postCodeInput().sendKeys(p.zipcode);
-        cityInput().sendKeys(p.city);
-        countrySelect().selectByVisibleText(p.country);
+        address1Input().sendKeys(p.getAddress());
+        postCodeInput().sendKeys(p.getZipcode());
+        cityInput().sendKeys(p.getCity());
+        countrySelect().selectByVisibleText(p.getCountry());
         confirmAdressesButton().click();
 
     }

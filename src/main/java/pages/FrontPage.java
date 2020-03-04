@@ -9,13 +9,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class FirstPage {
+public class FrontPage {
 
     private static WebDriver driver;
     private static WebDriverWait wait;
     private static String url = "https://demo.prestashop.com/";
 
-    public FirstPage(WebDriver driver, WebDriverWait wait) {
+    public FrontPage(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;
         this.wait = wait;
         driver.get(url);

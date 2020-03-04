@@ -57,13 +57,11 @@ public class SignInPage {
     }
 
     public boolean signIn(TestPerson p) {
-        //emailInput().click();
-
-        //passwordInput().click();
-        passwordInput().sendKeys(p.password);
-        emailInput().sendKeys(p.email);
-        passwordInput().sendKeys(Keys.ENTER);
-        //signInButton().click();
+        passwordInput().click();
+        passwordInput().sendKeys(p.getPassword());
+        emailInput().sendKeys(p.getEmail());
+        //passwordInput().sendKeys(Keys.ENTER);
+        signInButton().click();
         if(!haveAccount())
             return false;
         return true;
@@ -71,20 +69,22 @@ public class SignInPage {
 
     public void createAcount(TestPerson p) {
         createAccountLink().click();
-        if(p.gender.equals("male"))
+        if(p.getGender().equals("male"))
             mrInput().click();
         else
             mrsInput().click();
-        firstnameInput().sendKeys(p.firstName);
-        lastnameInput().sendKeys(p.lastName);
+        firstnameInput().sendKeys(p.getFirstName());
+        lastnameInput().sendKeys(p.getLastName());
         emailInput().clear();
-        emailInput().sendKeys(p.email);
+        emailInput().sendKeys(p.getEmail());
         passwordInput().clear();
-        passwordInput().sendKeys(p.password);
+        passwordInput().sendKeys(p.getPassword());
         gdpr().click();
         saveButton().click();
-        //customerForm().submit();
-
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e){}
+        saveButton().click(); // click again to be logged in
      }
 
 

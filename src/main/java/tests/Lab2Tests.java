@@ -25,7 +25,7 @@ public class Lab2Tests {
 
     @After
     public void after() {
-       // driver.close();
+       driver.close();
     }
 
     /**
@@ -34,9 +34,9 @@ public class Lab2Tests {
      **/
     @Test
     public void testBuyAsGuest() {
-        System.out.println("Running testBuy()");
-        FirstPage firstPage = new FirstPage(driver, wait);
-        firstPage.tShirtButton().click();
+        System.out.println("Running testBuyAsGuest()");
+        FrontPage frontPage = new FrontPage(driver, wait);
+        frontPage.tShirtButton().click();
 
         ProductPage productPage = new ProductPage(driver, wait);
         productPage.addToCartButton().click();
@@ -63,6 +63,7 @@ public class Lab2Tests {
         checkoutPage.approveOption().click();
         checkoutPage.sendOrderButton().click();
 
+        // assert that we have made a purchase
         Assert.assertEquals("Payment method: Payments by check",checkoutPage.paymentConfirmMessage());
         System.out.println(checkoutPage.paymentConfirmMessage());
     }
@@ -73,13 +74,13 @@ public class Lab2Tests {
     @Test
     public void testSearch() {
         System.out.println("Running testSearch()");
-        FirstPage firstPage = new FirstPage(driver, wait);
-        firstPage.searchInput().sendKeys("hum"+ Keys.ENTER);
+        FrontPage frontPage = new FrontPage(driver, wait);
+        frontPage.searchInput().sendKeys("hum"+ Keys.ENTER);
         SearchResults searchResults = new SearchResults(driver, wait);
         // asssert that we have some hits
         Assert.assertTrue(searchResults.resultText().startsWith("Showing"));
         System.out.println(searchResults.resultText());
-        firstPage.searchInput().sendKeys("zxcvb83645"+ Keys.ENTER);
+        frontPage.searchInput().sendKeys("zxcvb83645"+ Keys.ENTER);
         // assert that we didn't find anything
         Assert.assertTrue(searchResults.resultZeroText().startsWith("Sorry"));
         System.out.println(searchResults.resultZeroText());
@@ -91,11 +92,11 @@ public class Lab2Tests {
     @Test
     public void testContactUs() {
         System.out.println("Running testContactUs()");
-        FirstPage firstPage = new FirstPage(driver, wait);
-        firstPage.contactLink().click();
+        FrontPage frontPage = new FrontPage(driver, wait);
+        frontPage.contactLink().click();
         TestPerson p = new TestPerson();
         ContactPage contactPage = new ContactPage(driver, wait);
-        contactPage.emailInput().sendKeys(p.email);
+        contactPage.emailInput().sendKeys(p.getEmail());
         contactPage.messsageInput().sendKeys("My testmessage");
         contactPage.sendButton().click();
         System.out.println(contactPage.confirmText());
@@ -108,13 +109,13 @@ public class Lab2Tests {
     @Test
     public void testShoppingCart() {
         System.out.println("Running testShoppingCart()");
-        FirstPage firstPage = new FirstPage(driver, wait);
-        firstPage.mugButton().click();
+        FrontPage frontPage = new FrontPage(driver, wait);
+        frontPage.mugButton().click();
         ProductPage productPage = new ProductPage(driver, wait);
         productPage.addToCartButton().click();
         ShoppingCartModal shoppingCartModal = new ShoppingCartModal(driver, wait);
         shoppingCartModal.continueShoppingButton().click();
-        firstPage.shoppingCartButton().click();
+        frontPage.shoppingCartButton().click();
         ShoppingCart shoppingCart = new ShoppingCart(driver, wait);
         // assert one item in shoppingcart
         Assert.assertEquals("1 item", shoppingCart.itemCountMessage());
@@ -124,24 +125,46 @@ public class Lab2Tests {
     }
 
     /**
-     * 5. As a repeat customer I want to be able to sign in to my saved profile to save time
+     * 5. As a repeat customer I want to be able to sign in to see my order history
      **/
     @Test
     public void testSignIn() {
-        FirstPage firstPage = new FirstPage(driver, wait);
-        firstPage.signinButton().click();
+        FrontPage frontPage = new FrontPage(driver, wait);
+        frontPage.signinButton().click();
         SignInPage signInPage = new SignInPage(driver, wait);
+        ProfilePage profilePage = new ProfilePage(driver, wait);
+
         TestPerson p = new TestPerson();
         if (!signInPage.signIn(p)) {
             signInPage.createAcount(p);
+            profilePage.signOutLink().click(); // we must first sign out again after creating a new account
+            signInPage.signIn(p); // now we know that we have an account so this should always work
         }
-        ProfilePage profilePage = new ProfilePage(driver, wait);
-        firstPage.signinButton().click(); // reload profilepage now that we are logged id (in case we created a new account)
         // check that we arrived at profilepage
         Assert.assertTrue(profilePage.informationButton().isDisplayed());
         profilePage.signOutLink().click();
         // check that we are signed out
         Assert.assertTrue(signInPage.signInButton().isDisplayed());
-
     }
+
+    /**
+     * 6. As a customer I want to be able create an account to keep track of my orders
+     **/
+    @Test
+    public void testCreateAccount() {
+        FrontPage frontPage = new FrontPage(driver, wait);
+        frontPage.signinButton().click();
+        SignInPage signInPage = new SignInPage(driver, wait);
+        TestPerson p = new TestPerson(true); // random email för att alltid kunna skapa ett nytt konto
+        signInPage.createAcount(p);
+        ProfilePage profilePage = new ProfilePage(driver, wait);
+        // check that we arrived at profilepage
+        Assert.assertTrue(profilePage.informationButton().isDisplayed());
+        profilePage.signOutLink().click();
+        // check that we are signed out
+        Assert.assertTrue(signInPage.signInButton().isDisplayed());
+    }
+
+
 }
+
