@@ -23,6 +23,11 @@ public class FrontPage {
         wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("framelive"));
     }
 
+    public SignInPage gotoSignin() {
+        signinButton().click();
+        return new SignInPage(driver,wait);
+    }
+
     public WebElement signinButton() {
         return driver.findElement(By.cssSelector("#_desktop_user_info > div > a > span"));
     }

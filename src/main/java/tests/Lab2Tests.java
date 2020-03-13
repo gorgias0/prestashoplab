@@ -56,7 +56,6 @@ public class Lab2Tests {
         checkoutPage.confirmAdressesButton().click();
 
         // shipping
-        //checkoutPage.shippingByPrestashopRadio().click();
         checkoutPage.confirmDeliveryButton().click();
         // payment
         checkoutPage.payByCheckOption().click();
@@ -130,8 +129,7 @@ public class Lab2Tests {
     @Test
     public void testSignIn() {
         FrontPage frontPage = new FrontPage(driver, wait);
-        frontPage.signinButton().click();
-        SignInPage signInPage = new SignInPage(driver, wait);
+        SignInPage signInPage = frontPage.gotoSignin();
         ProfilePage profilePage = new ProfilePage(driver, wait);
 
         TestPerson p = new TestPerson();

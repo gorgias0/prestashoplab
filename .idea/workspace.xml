@@ -2,7 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2cbfd49a-e632-4bfc-9646-e53761f348ef" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/target/classes/pages/ContactPage.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/pages/FrontPage.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/pages/ProfilePage.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/pages/SearchResults.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/pages/SignInPage.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pages/FrontPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/FrontPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pages/SignInPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/SignInPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tests/Lab2Tests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tests/Lab2Tests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/tests/Lab2Tests.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/tests/Lab2Tests.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -18,6 +26,24 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="pagefactory" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MavenImportPreferences">
@@ -39,7 +65,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
-  <component name="RunManager" selected="Application.TestRunner">
+  <component name="RunManager" selected="JUnit.Lab2Tests.testSignIn">
     <configuration name="TestRunner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="tests.TestRunner" />
       <module name="PrestaShop" />
@@ -119,8 +145,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.TestRunner" />
         <item itemvalue="JUnit.Lab2Tests.testSignIn" />
+        <item itemvalue="Application.TestRunner" />
         <item itemvalue="JUnit.Lab2Tests.testCreateAccount" />
         <item itemvalue="JUnit.Lab2Tests.testSignIn2" />
         <item itemvalue="JUnit.Lab2Tests.testSearch" />
@@ -162,7 +188,13 @@
       <option name="presentableId" value="LOCAL−00004" />
       <updated>1583353380588</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL−00005" summary="RC1">
+      <created>1583436739844</created>
+      <option name="number" value="LOCAL−00005" />
+      <option name="presentableId" value="LOCAL−00005" />
+      <updated>1583436739845</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -170,7 +202,8 @@
     <MESSAGE value="3 stories done" />
     <MESSAGE value="5 stories done" />
     <MESSAGE value="Better sign in test" />
-    <option name="LAST_COMMIT_MESSAGE" value="Better sign in test" />
+    <MESSAGE value="RC1" />
+    <option name="LAST_COMMIT_MESSAGE" value="RC1" />
   </component>
   <component name="WindowStateProjectService">
     <state x="574" y="126" key="#com.intellij.ide.util.MemberChooser" timestamp="1583350069597">
@@ -181,30 +214,30 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="278" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.864@0.0.1536.864" timestamp="1583350866319" />
-    <state x="408" y="30" key="CommitChangelistDialog2" timestamp="1583353379208">
+    <state x="408" y="30" key="CommitChangelistDialog2" timestamp="1584093638132">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="408" y="30" key="CommitChangelistDialog2/0.0.1536.864@0.0.1536.864" timestamp="1583353379208" />
+    <state x="408" y="30" key="CommitChangelistDialog2/0.0.1536.864@0.0.1536.864" timestamp="1584093638132" />
     <state x="549" y="191" key="FileChooserDialogImpl" timestamp="1582131414304">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="549" y="191" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1582131414304" />
-    <state width="1493" height="223" key="GridCell.Tab.0.bottom" timestamp="1583392434926">
+    <state width="1493" height="223" key="GridCell.Tab.0.bottom" timestamp="1584093203536">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="223" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1583392434926" />
-    <state width="1493" height="223" key="GridCell.Tab.0.center" timestamp="1583392434926">
+    <state width="1493" height="223" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1584093203536" />
+    <state width="1493" height="223" key="GridCell.Tab.0.center" timestamp="1584093203536">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="223" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1583392434926" />
-    <state width="1493" height="223" key="GridCell.Tab.0.left" timestamp="1583392434925">
+    <state width="1493" height="223" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1584093203536" />
+    <state width="1493" height="223" key="GridCell.Tab.0.left" timestamp="1584093203535">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="223" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1583392434925" />
-    <state width="1493" height="223" key="GridCell.Tab.0.right" timestamp="1583392434926">
+    <state width="1493" height="223" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1584093203535" />
+    <state width="1493" height="223" key="GridCell.Tab.0.right" timestamp="1584093203536">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="223" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1583392434926" />
+    <state width="1493" height="223" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1584093203536" />
     <state x="439" y="138" key="NewModule_or_Project.wizard" timestamp="1582131417945">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
@@ -213,13 +246,17 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="249" y="59" key="SettingsEditor/0.0.1536.864@0.0.1536.864" timestamp="1581668456736" />
-    <state x="361" y="169" key="Vcs.Push.Dialog.v2" timestamp="1583353384122">
+    <state x="361" y="169" key="Vcs.Push.Dialog.v2" timestamp="1584093688242">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="361" y="169" key="Vcs.Push.Dialog.v2/0.0.1536.864@0.0.1536.864" timestamp="1583353384122" />
+    <state x="361" y="169" key="Vcs.Push.Dialog.v2/0.0.1536.864@0.0.1536.864" timestamp="1584093688242" />
     <state x="209" y="137" key="new project wizard" timestamp="1582108262714">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="209" y="137" key="new project wizard/0.0.1536.864@0.0.1536.864" timestamp="1582108262714" />
+    <state x="431" y="181" key="search.everywhere.popup" timestamp="1584093495702">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="431" y="181" key="search.everywhere.popup/0.0.1536.864@0.0.1536.864" timestamp="1584093495702" />
   </component>
 </project>

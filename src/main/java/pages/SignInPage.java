@@ -19,10 +19,10 @@ public class SignInPage {
         return driver.findElement(By.id("customer-form"));
     }
     public WebElement mrInput() {
-        return driver.findElement(By.cssSelector("#customer-form > section > div:nth-child(2) > div.col-md-6.form-control-valign > label:nth-child(1) > span > input[type=radio]"));
+        return driver.findElement(By.cssSelector("#customer-form > section > div:nth-child(1) > div.col-md-6.form-control-valign > label:nth-child(1) > span > input[type=radio]"));
     }
     public WebElement mrsInput() {
-        return driver.findElement(By.cssSelector("#customer-form > section > div:nth-child(2) > div.col-md-6.form-control-valign > label:nth-child(2) > span > input[type=radio]"));
+        return driver.findElement(By.cssSelector("#customer-form > section > div:nth-child(1) > div.col-md-6.form-control-valign > label:nth-child(2) > span > input[type=radio]"));
     }
     public WebElement emailInput() {
         return driver.findElement(By.name("email"));
@@ -84,7 +84,7 @@ public class SignInPage {
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e){}
-        saveButton().click(); // click again to be logged in
+        saveButton().click(); // click again to go to profilepage (bug in prestashop?)
      }
 
 
