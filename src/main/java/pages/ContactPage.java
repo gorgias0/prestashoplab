@@ -1,36 +1,31 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.FindBy;
 
-public class ContactPage {
-    private static WebDriver driver;
-    private static WebDriverWait wait;
-    private static String url = "https://closed-canvas.demo.prestashop.com/en/contact-us";
+public class ContactPage extends PageObject{
 
-    public ContactPage(WebDriver driver, WebDriverWait wait) {
-        this.driver = driver;
-        this.wait = wait;
+    public ContactPage(WebDriver driver) {
+        super(driver);
     }
 
-    public WebElement emailInput() {
-        return driver.findElement(By.name("from"));
-    }
-    public WebElement messsageInput() {
-        return driver.findElement(By.name("message"));
-    }
-    public WebElement sendButton() {
-        return driver.findElement(By.cssSelector("#content > section > form > footer > input.btn.btn-primary"));
+    @FindBy(name="from")
+    private WebElement emailInput;
+    @FindBy(name="message")
+    private WebElement messsageInput;
+    @FindBy(css="#content > section > form > footer > input.btn.btn-primary")
+    private WebElement sendButton;
+
+    public String sendMessage(String email, String message) {
+        emailInput.sendKeys(email);
+        messsageInput.sendKeys(message);
+        sendButton.click();
+        return getConfirmText();
     }
 
-    public String confirmText() {
-        return driver.findElement(By.cssSelector("#content > section > form > div > ul > li")).getText();
-    }
-
-
-
+    @FindBy(css="#content > section > form > div > ul > li")
+    private WebElement confirmText;
+    public String getConfirmText() {return confirmText.getText();}
 
 }

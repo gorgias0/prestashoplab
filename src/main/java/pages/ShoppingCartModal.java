@@ -3,26 +3,31 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class ShoppingCartModal {
+public class ShoppingCartModal extends PageObject {
 
-    private static WebDriver driver;
-    private static WebDriverWait wait;
-
-    public ShoppingCartModal(WebDriver driver, WebDriverWait wait) {
-        this.driver = driver;
-        this.wait = wait;
+    public ShoppingCartModal(WebDriver driver) {
+        super(driver);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(
                 "#blockcart-modal > div > div > div.modal-body > div > div.col-md-7 > div > p:nth-child(2) > span.label")));
     }
 
-    public WebElement proceedToCheckoutButton() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#blockcart-modal > div > div > div.modal-body > div > div.col-md-7 > div > div > a")));
+    @FindBy(css="#blockcart-modal > div > div > div.modal-body > div > div.col-md-7 > div > div > a")
+    private WebElement proceedToCheckoutButton;
+
+    public ShoppingCart checkout() {
+        proceedToCheckoutButton.click();
+        return new ShoppingCart(driver);
     }
 
-    public WebElement continueShoppingButton() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#blockcart-modal > div > div > div.modal-body > div > div.col-md-7 > div > div > button")));
+    @FindBy(css="#blockcart-modal > div > div > div.modal-body > div > div.col-md-7 > div > div > button")
+    private WebElement continueShoppingButton;
+
+    public void continueShopping() {
+        continueShoppingButton.click();
     }
 }

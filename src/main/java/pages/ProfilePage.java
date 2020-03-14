@@ -1,29 +1,28 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.FindBy;
 
-public class ProfilePage {
-    private static WebDriver driver;
-    private static WebDriverWait wait;
+public class ProfilePage extends PageObject {
 
-    public ProfilePage(WebDriver driver, WebDriverWait wait) {
-        this.driver = driver;
-        this.wait = wait;
+    public ProfilePage(WebDriver driver) {
+        super(driver);
     }
 
-    public WebElement informationButton() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#identity-link")));
-    }
+    @FindBy(id="identity-link")
+    public WebElement informationButton;
+
+    @FindBy(css="#main > header > h1")
+    private WebElement htxt;
 
     public String headerText() {
-        return driver.findElement(By.cssSelector("#main > header > h1")).getText();
+        return htxt.getText();
     }
+    @FindBy(css="#_desktop_user_info > div > a.logout.hidden-sm-down")
+    private WebElement signOutLink;
 
-    public WebElement signOutLink() {
-        return driver.findElement(By.cssSelector("#_desktop_user_info > div > a.logout.hidden-sm-down"));
+    public void signOut() {
+        signOutLink.click();
     }
 }

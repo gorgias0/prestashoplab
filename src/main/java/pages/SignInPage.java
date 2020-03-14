@@ -1,45 +1,48 @@
 package pages;
 
-import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import testdata.TestPerson;
 
-public class SignInPage {
+public class SignInPage extends PageObject {
 
-    private static WebDriver driver;
-    private static WebDriverWait wait;
-
-    public SignInPage(WebDriver driver, WebDriverWait wait) {
-        this.driver = driver;
-        this.wait = wait;
+    public SignInPage(WebDriver driver) {
+        super(driver);
     }
 
-    public WebElement customerForm() {
-        return driver.findElement(By.id("customer-form"));
-    }
-    public WebElement mrInput() {
-        return driver.findElement(By.cssSelector("#customer-form > section > div:nth-child(1) > div.col-md-6.form-control-valign > label:nth-child(1) > span > input[type=radio]"));
-    }
-    public WebElement mrsInput() {
-        return driver.findElement(By.cssSelector("#customer-form > section > div:nth-child(1) > div.col-md-6.form-control-valign > label:nth-child(2) > span > input[type=radio]"));
-    }
-    public WebElement emailInput() {
-        return driver.findElement(By.name("email"));
-    }
+    @FindBy(id="customer-form")
+    public WebElement customerForm;
 
-    public WebElement passwordInput() {
-        return driver.findElement(By.name("password"));
-    }
+    @FindBy(css="#customer-form > section > div:nth-child(1) > div.col-md-6.form-control-valign > label:nth-child(1) > span > input[type=radio]")
+    public WebElement mrInput;
 
-    public WebElement signInButton() {
-        return driver.findElement(By.cssSelector("#submit-login"));
-    }
-    public WebElement firstnameInput() {return driver.findElement(By.name("firstname"));}
-    public WebElement lastnameInput() {return driver.findElement(By.name("lastname"));}
-    public WebElement gdpr() {return driver.findElement(By.name("psgdpr"));}
-    public WebElement saveButton() {return driver.findElement(By.cssSelector("#customer-form > footer > button"));}
-    public WebElement createInput() {return driver.findElement(By.name("submitCreate"));}
+    @FindBy(css="#customer-form > section > div:nth-child(1) > div.col-md-6.form-control-valign > label:nth-child(2) > span > input[type=radio]")
+    public WebElement mrsInput;
+
+    @FindBy(name="email")
+    public WebElement emailInput;
+
+    @FindBy(name="password")
+    public WebElement passwordInput;
+
+    @FindBy(id="submit-login")
+    public WebElement signInButton;
+
+    @FindBy(name="firstname")
+    public WebElement firstnameInput;
+    @FindBy(name="lastname")
+    public WebElement lastnameInput;
+    @FindBy(name="psgdpr")
+    public WebElement gdpr;
+    @FindBy(css="#customer-form > footer > button")
+    private WebElement saveButton;
+    public void save(){saveButton.click();}
+    @FindBy(name="submitCreate")
+    private WebElement createInput;
+    public void submit(){createInput.click();}
 
     public boolean haveAccount() {
         try {
@@ -52,39 +55,38 @@ public class SignInPage {
         return false;
     }
 
-    public WebElement createAccountLink() {
-        return driver.findElement(By.cssSelector("#content > div > a"));
-    }
+    @FindBy(css="#content > div > a")
+    public WebElement createAccountLink;
+
 
     public boolean signIn(TestPerson p) {
-        passwordInput().click();
-        passwordInput().sendKeys(p.getPassword());
-        emailInput().sendKeys(p.getEmail());
-        //passwordInput().sendKeys(Keys.ENTER);
-        signInButton().click();
+        passwordInput.click();
+        passwordInput.sendKeys(p.getPassword());
+        emailInput.sendKeys(p.getEmail());
+        signInButton.click();
         if(!haveAccount())
             return false;
         return true;
     }
 
     public void createAcount(TestPerson p) {
-        createAccountLink().click();
+        createAccountLink.click();
         if(p.getGender().equals("male"))
-            mrInput().click();
+            mrInput.click();
         else
-            mrsInput().click();
-        firstnameInput().sendKeys(p.getFirstName());
-        lastnameInput().sendKeys(p.getLastName());
-        emailInput().clear();
-        emailInput().sendKeys(p.getEmail());
-        passwordInput().clear();
-        passwordInput().sendKeys(p.getPassword());
-        gdpr().click();
-        saveButton().click();
+            mrsInput.click();
+        firstnameInput.sendKeys(p.getFirstName());
+        lastnameInput.sendKeys(p.getLastName());
+        emailInput.clear();
+        emailInput.sendKeys(p.getEmail());
+        passwordInput.clear();
+        passwordInput.sendKeys(p.getPassword());
+        gdpr.click();
+        save();
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e){}
-        saveButton().click(); // click again to go to profilepage (bug in prestashop?)
+        save(); // click again to go to profilepage (bug in prestashop?)
      }
 
 

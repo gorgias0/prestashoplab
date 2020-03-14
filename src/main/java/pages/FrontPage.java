@@ -1,66 +1,74 @@
 package pages;
 
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class FrontPage {
+public class FrontPage extends PageObject {
 
-    private static WebDriver driver;
-    private static WebDriverWait wait;
     private static String url = "https://demo.prestashop.com/";
+    private static WebDriverWait wait;
 
-    public FrontPage(WebDriver driver, WebDriverWait wait) {
-        this.driver = driver;
-        this.wait = wait;
+    public FrontPage(WebDriver driver) {
+        super(driver);
         driver.get(url);
         driver.manage().window().maximize();
+        wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("framelive"));
     }
 
-    public SignInPage gotoSignin() {
-        signinButton().click();
-        return new SignInPage(driver,wait);
+    public SignInPage goSignIn() {
+        signinButton.click();
+        return new SignInPage(driver);
+    }
+    @FindBy(css="#_desktop_user_info > div > a > span")
+    private WebElement signinButton;
+
+    @FindBy(css="#content > section > div > article:nth-child(1) > div > a")
+    private WebElement tShirtButton;
+
+    public ProductPage buyTshirt() {
+        tShirtButton.click();
+        return new ProductPage(driver);
     }
 
-    public WebElement signinButton() {
-        return driver.findElement(By.cssSelector("#_desktop_user_info > div > a > span"));
+    @FindBy(css="#content > section > div > article:nth-child(8) > div > a")
+    private WebElement mugButton;
+
+    public ProductPage buyMug() {
+        mugButton.click();
+        return new ProductPage(driver);
     }
 
-    public WebElement tShirtButton() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#content > section > div > article:nth-child(1) > div > a")));
+    @FindBy(name="s")
+    private WebElement searchInput;
+
+    public SearchResults search(String s) {
+        searchInput.sendKeys(s);
+        searchInput.submit();
+        return new SearchResults(driver);
     }
 
-    public WebElement mugButton() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#content > section > div > article:nth-child(8) > div > a")));
-    }
+    @FindBy(css="#contact-link > a")
+    private WebElement contactLink;
 
-    public WebElement newProductsButton() {
-        return wait.until(ExpectedConditions.elementToBeClickable(By.id("link-product-page-new-products-1")));
+    public ContactPage goContact() {
+        contactLink.click();
+        return new ContactPage(driver);
     }
+    @FindBy(css="#_desktop_cart > div > div > a")
+    private WebElement shoppingCartButton;
 
-    public WebElement searchInput() {
-        return driver.findElement(By.name("s"));
+    public ShoppingCart goShoppingCart() {
+        shoppingCartButton.click();
+        return new ShoppingCart(driver);
     }
+    @FindBy(css="#_desktop_user_info > div > a")
+    private WebElement signInLink;
 
-    public WebElement contactLink() {
-        return driver.findElement(By.cssSelector("#contact-link > a"));
-    }
+    @FindBy(css="#_desktop_user_info > div > a")
+    private WebElement signOutLink;
 
-    public WebElement shoppingCartButton() {
-        return driver.findElement(By.cssSelector("#_desktop_cart > div > div > a"));
-    }
-
-    public WebElement signInLink() {
-        return driver.findElement(By.cssSelector("#_desktop_user_info > div > a"));
-    }
-
-    public WebElement signOutLink() {
-        return driver.findElement(By.cssSelector("#_desktop_user_info > div > a"));
-    }
 }

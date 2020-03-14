@@ -1,7 +1,9 @@
 package tests;
 
-import org.junit.*;
-import org.openqa.selenium.Keys;
+import org.junit.AfterClass;
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -15,16 +17,16 @@ public class Lab2Tests {
     private static WebDriver driver;
     private static WebDriverWait wait;
 
-    @Before
-    public void before() {
+    @BeforeClass
+    public static void before() {
         driver = new ChromeDriver();
-        driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        wait = new WebDriverWait(driver, 20, 300);
+        wait = new WebDriverWait(driver, 10, 300);
     }
 
-    @After
-    public void after() {
+    @AfterClass
+    public static void after() {
        driver.close();
     }
 
@@ -35,36 +37,32 @@ public class Lab2Tests {
     @Test
     public void testBuyAsGuest() {
         System.out.println("Running testBuyAsGuest()");
-        FrontPage frontPage = new FrontPage(driver, wait);
-        frontPage.tShirtButton().click();
+        FrontPage frontPage = new FrontPage(driver);
 
-        ProductPage productPage = new ProductPage(driver, wait);
-        productPage.addToCartButton().click();
+        ProductPage productPage = frontPage.buyTshirt();
 
-        ShoppingCartModal shoppingCartModal = new ShoppingCartModal(driver, wait);
-        shoppingCartModal.proceedToCheckoutButton().click();
+        ShoppingCartModal shoppingCartModal = productPage.addToShoppingCart();
+        ShoppingCart shoppingCart = shoppingCartModal.checkout();
 
-        ShoppingCart shoppingCart = new ShoppingCart(driver, wait);
-        shoppingCart.proceedButton().click();
-
-        CheckoutPage checkoutPage = new CheckoutPage(driver, wait);
+        CheckoutPage checkoutPage = shoppingCart.proceed();
         TestPerson p = new TestPerson();
         checkoutPage.fillInPersonalInfo(p);
-        checkoutPage.continueButton().click();
+        checkoutPage.continueButton.click();
 
         checkoutPage.fillInAdresses(p);
-        checkoutPage.confirmAdressesButton().click();
+        checkoutPage.confirmAdressesButton.click();
 
         // shipping
-        checkoutPage.confirmDeliveryButton().click();
+        checkoutPage.confirmDeliveryButton.click();
         // payment
-        checkoutPage.payByCheckOption().click();
-        checkoutPage.approveOption().click();
-        checkoutPage.sendOrderButton().click();
+        checkoutPage.payByCheckOption.click();
+        checkoutPage.approveOption.click();
+        checkoutPage.sendOrderButton.click();
 
         // assert that we have made a purchase
         Assert.assertEquals("Payment method: Payments by check",checkoutPage.paymentConfirmMessage());
         System.out.println(checkoutPage.paymentConfirmMessage());
+        System.out.println("end buy as guest");
     }
 
     /**
@@ -72,17 +70,17 @@ public class Lab2Tests {
      **/
     @Test
     public void testSearch() {
-        System.out.println("Running testSearch()");
-        FrontPage frontPage = new FrontPage(driver, wait);
-        frontPage.searchInput().sendKeys("hum"+ Keys.ENTER);
-        SearchResults searchResults = new SearchResults(driver, wait);
+        System.out.println("Running testSearch");
+        FrontPage frontPage = new FrontPage(driver);
+        SearchResults searchResults = frontPage.search("hum");
         // asssert that we have some hits
-        Assert.assertTrue(searchResults.resultText().startsWith("Showing"));
-        System.out.println(searchResults.resultText());
-        frontPage.searchInput().sendKeys("zxcvb83645"+ Keys.ENTER);
+        Assert.assertTrue(searchResults.getResultText().startsWith("Showing"));
+        System.out.println(searchResults.getResultText());
+        searchResults = frontPage.search("zxcvb83645");
         // assert that we didn't find anything
-        Assert.assertTrue(searchResults.resultZeroText().startsWith("Sorry"));
-        System.out.println(searchResults.resultZeroText());
+        Assert.assertTrue(searchResults.getZeroText().startsWith("Sorry"));
+        System.out.println(searchResults.getZeroText());
+        System.out.println("end testSearch");
     }
 
     /**
@@ -90,16 +88,14 @@ public class Lab2Tests {
      **/
     @Test
     public void testContactUs() {
-        System.out.println("Running testContactUs()");
-        FrontPage frontPage = new FrontPage(driver, wait);
-        frontPage.contactLink().click();
+        System.out.println("Running testContactUs");
+        FrontPage frontPage = new FrontPage(driver);
         TestPerson p = new TestPerson();
-        ContactPage contactPage = new ContactPage(driver, wait);
-        contactPage.emailInput().sendKeys(p.getEmail());
-        contactPage.messsageInput().sendKeys("My testmessage");
-        contactPage.sendButton().click();
-        System.out.println(contactPage.confirmText());
-        Assert.assertEquals("Your message has been successfully sent to our team.", contactPage.confirmText());
+        ContactPage contactPage = frontPage.goContact();
+        String result = contactPage.sendMessage(p.getEmail(), "My message");
+        System.out.println(result);
+        Assert.assertEquals("Your message has been successfully sent to our team.", result);
+        System.out.println("end testContactUs");
     }
 
     /* *
@@ -107,20 +103,17 @@ public class Lab2Tests {
     * */
     @Test
     public void testShoppingCart() {
-        System.out.println("Running testShoppingCart()");
-        FrontPage frontPage = new FrontPage(driver, wait);
-        frontPage.mugButton().click();
-        ProductPage productPage = new ProductPage(driver, wait);
-        productPage.addToCartButton().click();
-        ShoppingCartModal shoppingCartModal = new ShoppingCartModal(driver, wait);
-        shoppingCartModal.continueShoppingButton().click();
-        frontPage.shoppingCartButton().click();
-        ShoppingCart shoppingCart = new ShoppingCart(driver, wait);
+        System.out.println("Running testShoppingCart");
+        FrontPage frontPage = new FrontPage(driver);
+        ProductPage productPage = frontPage.buyMug();
+        ShoppingCartModal shoppingCartModal = productPage.addToShoppingCart();
+        ShoppingCart shoppingCart = shoppingCartModal.checkout();
         // assert one item in shoppingcart
-        Assert.assertEquals("1 item", shoppingCart.itemCountMessage());
-        shoppingCart.deleteButton().click();
+        Assert.assertEquals("1 item", shoppingCart.getItemCountMessage());
+        shoppingCart.delete();
         // assert no item in shoppingcart
-        Assert.assertNotNull(shoppingCart.emptyMessage());
+        Assert.assertNotNull(shoppingCart.getEmptyMessage());
+        System.out.println("end testShoppingCart");
     }
 
     /**
@@ -128,21 +121,23 @@ public class Lab2Tests {
      **/
     @Test
     public void testSignIn() {
-        FrontPage frontPage = new FrontPage(driver, wait);
-        SignInPage signInPage = frontPage.gotoSignin();
-        ProfilePage profilePage = new ProfilePage(driver, wait);
+        System.out.println("Testsignin");
+        FrontPage frontPage = new FrontPage(driver);
+        SignInPage signInPage = frontPage.goSignIn();
+        ProfilePage profilePage = new ProfilePage(driver);
 
         TestPerson p = new TestPerson();
         if (!signInPage.signIn(p)) {
             signInPage.createAcount(p);
-            profilePage.signOutLink().click(); // we must first sign out again after creating a new account
+            profilePage.signOut(); // we must first sign out again after creating a new account
             signInPage.signIn(p); // now we know that we have an account so this should always work
         }
         // check that we arrived at profilepage
-        Assert.assertTrue(profilePage.informationButton().isDisplayed());
-        profilePage.signOutLink().click();
+        Assert.assertTrue(profilePage.informationButton.isDisplayed());
+        profilePage.signOut();
         // check that we are signed out
-        Assert.assertTrue(signInPage.signInButton().isDisplayed());
+        Assert.assertTrue(signInPage.signInButton.isDisplayed());
+        System.out.println("end testsignin");
     }
 
     /**
@@ -150,17 +145,18 @@ public class Lab2Tests {
      **/
     @Test
     public void testCreateAccount() {
-        FrontPage frontPage = new FrontPage(driver, wait);
-        frontPage.signinButton().click();
-        SignInPage signInPage = new SignInPage(driver, wait);
+        System.out.println("testcreateaccount");
+        FrontPage frontPage = new FrontPage(driver);
+        SignInPage signInPage = frontPage.goSignIn();
         TestPerson p = new TestPerson(true); // random email för att alltid kunna skapa ett nytt konto
         signInPage.createAcount(p);
-        ProfilePage profilePage = new ProfilePage(driver, wait);
+        ProfilePage profilePage = new ProfilePage(driver);
         // check that we arrived at profilepage
-        Assert.assertTrue(profilePage.informationButton().isDisplayed());
-        profilePage.signOutLink().click();
+        Assert.assertTrue(profilePage.informationButton.isDisplayed());
+        profilePage.signOut();
         // check that we are signed out
-        Assert.assertTrue(signInPage.signInButton().isDisplayed());
+        Assert.assertTrue(signInPage.signInButton.isDisplayed());
+        System.out.println("end testcreateaccount");
     }
 
 

@@ -1,104 +1,92 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import testdata.TestPerson;
 
-import javax.xml.crypto.dsig.spec.ExcC14NParameterSpec;
+public class CheckoutPage extends PageObject{
 
-public class CheckoutPage {
-    private static WebDriver driver;
-    private static WebDriverWait wait;
-
-    public CheckoutPage(WebDriver driver, WebDriverWait wait) {
-        this.driver = driver;
-        this.wait = wait;
+    public CheckoutPage(WebDriver driver) {
+        super(driver);
     }
 
-    public WebElement mrRadio() {
-        return driver.findElement(By.cssSelector("#customer-form > section > div:nth-child(2) > div.col-md-6.form-control-valign > label:nth-child(1) > span > input[type=radio]"));
-    }
-    public WebElement mrsRadio() {
-        return driver.findElement(By.cssSelector("#customer-form > section > div:nth-child(2) > div.col-md-6.form-control-valign > label:nth-child(2) > span > input[type=radio]"));
-    }
+    @FindBy(css="#customer-form > section > div:nth-child(1) > div.col-md-6.form-control-valign > label:nth-child(1) > span > input[type=radio]")
+    public WebElement mrRadio;
 
-    public WebElement firstnameInput() {
-        return driver.findElement(By.name("firstname"));
-    }
-    public WebElement lastnameInput() {
-        return driver.findElement(By.name("lastname"));
-    }
-    public WebElement emailInput() {
-        return driver.findElement(By.name("email"));
-    }
-    public WebElement passwordInput() {
-        return driver.findElement(By.name("password"));
-    }
-    public WebElement birthdayInput() {
-        return driver.findElement(By.name("birthday"));
-    }
-    public WebElement agreeRadio() {
-        return driver.findElement(By.name("psgdpr"));
-    }
-    public WebElement address1Input() {
-        return driver.findElement(By.name("address1"));
-    }
-    public WebElement postCodeInput() {
-        return driver.findElement(By.name("postcode"));
-    }
-    public WebElement cityInput() {
-        return driver.findElement(By.name("city"));
-    }
-    public Select countrySelect() {
-        return new Select(driver.findElement(By.name("id_country")));
-    }
-    public WebElement confirmAdressesButton() {
-        return driver.findElement(By.name("confirm-addresses"));
-    }
-    public WebElement continueButton() {
-        return driver.findElement(By.name("continue"));
-    }
+    @FindBy(css = "#customer-form > section > div:nth-child(1) > div.col-md-6.form-control-valign > label:nth-child(2) > span > input[type=radio]" )
+    public WebElement mrsRadio;
+
+    @FindBy(name = "firstname")
+    public WebElement firstnameInput;
+    @FindBy(name = "lastname")
+    public WebElement lastnameInput;
+    @FindBy(name = "email")
+    public WebElement emailInput;
+    @FindBy(name = "password")
+    public WebElement passwordInput;
+    @FindBy(name = "birthday")
+    public WebElement birthdayInput;
+    @FindBy(name = "psgdpr")
+    public WebElement agreeRadio;
+    @FindBy(name = "address1")
+    public WebElement address1Input;
+    @FindBy(name = "postcode")
+    public WebElement postCodeInput;
+    @FindBy(name = "city")
+    public WebElement cityInput;
+    @FindBy(name = "id_country")
+    private WebElement countrySelect;
+    @FindBy(name = "confirm-addresses")
+    public WebElement confirmAdressesButton;
+    @FindBy(name = "continue")
+    public WebElement continueButton;
 
     // shippment
-    public WebElement shippingByPrestashopRadio() {return driver.findElement(By.id("delivery_option_1"));}
-    //public WebElement shippingByPrestashopRadio() {return wait.until(ExpectedConditions.presenceOfElementLocated(By.id("delivery_option_1")));}
-    public WebElement shippingByOtherRadio() {return driver.findElement(By.id("delivery_option_2 > span"));}
-    public WebElement confirmDeliveryButton() {return driver.findElement(By.cssSelector("#js-delivery > button"));}
+    @FindBy(id="delivery_option_1")
+    public WebElement shippingByPrestashopRadio;
+    @FindBy(id="delivery_option_2 > span")
+    public WebElement shippingByOtherRadio;
+    @FindBy(css="#js-delivery > button")
+    public WebElement confirmDeliveryButton;
 
     // payment
-    public WebElement payByCheckOption() {return driver.findElement(By.id("payment-option-1"));}
-    public WebElement payBankWireOption() {return driver.findElement(By.id("payment-option-2"));}
+    @FindBy(id="payment-option-1")
+    public WebElement payByCheckOption;
+    @FindBy(id = "payment-option-2")
+    public WebElement payBankWireOption;
+    @FindBy(name = "conditions_to_approve\\[terms-and-conditions\\]")
+    public WebElement approveOption;
+    @FindBy(css = "#payment-confirmation > div.ps-shown-by-js > button")
+    public WebElement sendOrderButton;
 
-    public WebElement approveOption() {return driver.findElement(By.name("conditions_to_approve\\[terms-and-conditions\\]"));}
-    public WebElement sendOrderButton() {return driver.findElement(By.cssSelector("#payment-confirmation > div.ps-shown-by-js > button"));}
-
+    @FindBy(css="#order-details > ul > li:nth-child(2)")
+    private WebElement confMsg;
     public String paymentConfirmMessage() {
-        return driver.findElement(By.cssSelector("#order-details > ul > li:nth-child(2)")).getText();
+        return confMsg.getText();
     }
 
 
 
     public void fillInPersonalInfo(TestPerson p) {
         if(p.getGender().equals("male"))
-            mrRadio().click();
+            mrRadio.click();
         else
-            mrsRadio().click();
-        firstnameInput().sendKeys(p.getFirstName());
-        lastnameInput().sendKeys(p.getLastName());
-        emailInput().sendKeys(p.getGuestEmail());
-        agreeRadio().click();
+            mrsRadio.click();
+        firstnameInput.sendKeys(p.getFirstName());
+        lastnameInput.sendKeys(p.getLastName());
+        emailInput.sendKeys(p.getGuestEmail());
+        agreeRadio.click();
     }
 
     public void fillInAdresses(TestPerson p) {
-        address1Input().sendKeys(p.getAddress());
-        postCodeInput().sendKeys(p.getZipcode());
-        cityInput().sendKeys(p.getCity());
-        countrySelect().selectByVisibleText(p.getCountry());
-        confirmAdressesButton().click();
+        address1Input.sendKeys(p.getAddress());
+        postCodeInput.sendKeys(p.getZipcode());
+        cityInput.sendKeys(p.getCity());
+        Select country = new Select(countrySelect);
+        country.selectByVisibleText(p.getCountry());
+        confirmAdressesButton.click();
 
     }
 
