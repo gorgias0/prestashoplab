@@ -38,30 +38,22 @@ public class Lab2Tests {
     public void testBuyAsGuest() {
         System.out.println("Running testBuyAsGuest()");
         FrontPage frontPage = new FrontPage(driver);
-
         ProductPage productPage = frontPage.buyTshirt();
-
         ShoppingCartModal shoppingCartModal = productPage.addToShoppingCart();
         ShoppingCart shoppingCart = shoppingCartModal.checkout();
-
         CheckoutPage checkoutPage = shoppingCart.proceed();
+
         TestPerson p = new TestPerson();
-        checkoutPage.fillInPersonalInfo(p);
-        checkoutPage.continueButton.click();
-
-        checkoutPage.fillInAdresses(p);
-        checkoutPage.confirmAdressesButton.click();
-
-        // shipping
+        checkoutPage.enterPersonalInfo(p);
+        checkoutPage.enterAdress(p);
+        // shipping with default options
         checkoutPage.confirmDeliveryButton.click();
-        // payment
-        checkoutPage.payByCheckOption.click();
-        checkoutPage.approveOption.click();
-        checkoutPage.sendOrderButton.click();
+        // pay by check
+        checkoutPage.payByCheck();
 
         // assert that we have made a purchase
-        Assert.assertEquals("Payment method: Payments by check",checkoutPage.paymentConfirmMessage());
-        System.out.println(checkoutPage.paymentConfirmMessage());
+        Assert.assertEquals("Payment method: Payments by check",checkoutPage.getPaymentConfirmation());
+        System.out.println(checkoutPage.getPaymentConfirmation());
         System.out.println("end buy as guest");
     }
 

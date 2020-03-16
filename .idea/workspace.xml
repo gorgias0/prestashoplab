@@ -1,25 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2cbfd49a-e632-4bfc-9646-e53761f348ef" name="Default Changelist" comment="PF1">
-      <change afterPath="$PROJECT_DIR$/src/main/java/pages/PageObject.java" afterDir="false" />
+    <list default="true" id="2cbfd49a-e632-4bfc-9646-e53761f348ef" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pages/CheckoutPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/CheckoutPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pages/ContactPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/ContactPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pages/FrontPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/FrontPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pages/ProductPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/ProductPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pages/ProfilePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/ProfilePage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pages/SearchResults.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/SearchResults.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pages/ShoppingCart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/ShoppingCart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pages/ShoppingCartModal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/ShoppingCartModal.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pages/SignInPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/SignInPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/tests/Lab2Tests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tests/Lab2Tests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/pages/CheckoutPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pages/CheckoutPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pages/ContactPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pages/ContactPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pages/FrontPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pages/FrontPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pages/ProductPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pages/ProductPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pages/ShoppingCart.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pages/ShoppingCart.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pages/ShoppingCartModal.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pages/ShoppingCartModal.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pages/ProfilePage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pages/ProfilePage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pages/SearchResults.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pages/SearchResults.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/pages/SignInPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pages/SignInPage.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/tests/Lab2Tests.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/tests/Lab2Tests.class" afterDir="false" />
     </list>
@@ -105,22 +94,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Lab2Tests.testContactUs" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="PrestaShop" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="tests" />
-      <option name="MAIN_CLASS_NAME" value="tests.Lab2Tests" />
-      <option name="METHOD_NAME" value="testContactUs" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Lab2Tests.testSearch" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="PrestaShop" />
       <extension name="coverage">
@@ -153,13 +126,29 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Lab2Tests.testSignIn" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="PrestaShop" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tests" />
+      <option name="MAIN_CLASS_NAME" value="tests.Lab2Tests" />
+      <option name="METHOD_NAME" value="testSignIn" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.TestRunner" />
-        <item itemvalue="JUnit.Lab2Tests.testSearch" />
+        <item itemvalue="JUnit.Lab2Tests.testSignIn" />
         <item itemvalue="JUnit.Lab2Tests.testBuyAsGuest" />
+        <item itemvalue="JUnit.Lab2Tests.testSearch" />
         <item itemvalue="JUnit.Lab2Tests.testShoppingCart" />
-        <item itemvalue="JUnit.Lab2Tests.testContactUs" />
       </list>
     </recent_temporary>
   </component>
@@ -210,7 +199,13 @@
       <option name="presentableId" value="LOCAL−00006" />
       <updated>1584093710678</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL−00007" summary="Pagefactory refactored">
+      <created>1584220788519</created>
+      <option name="number" value="LOCAL−00007" />
+      <option name="presentableId" value="LOCAL−00007" />
+      <updated>1584220788519</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -220,7 +215,8 @@
     <MESSAGE value="Better sign in test" />
     <MESSAGE value="RC1" />
     <MESSAGE value="PF1" />
-    <option name="LAST_COMMIT_MESSAGE" value="PF1" />
+    <MESSAGE value="Pagefactory refactored" />
+    <option name="LAST_COMMIT_MESSAGE" value="Pagefactory refactored" />
   </component>
   <component name="WindowStateProjectService">
     <state x="574" y="126" key="#com.intellij.ide.util.MemberChooser" timestamp="1583350069597">
@@ -231,30 +227,30 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="278" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.864@0.0.1536.864" timestamp="1583350866319" />
-    <state x="408" y="30" key="CommitChangelistDialog2" timestamp="1584093782317">
+    <state x="408" y="30" key="CommitChangelistDialog2" timestamp="1584220786963">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="408" y="30" key="CommitChangelistDialog2/0.0.1536.864@0.0.1536.864" timestamp="1584093782317" />
+    <state x="408" y="30" key="CommitChangelistDialog2/0.0.1536.864@0.0.1536.864" timestamp="1584220786963" />
     <state x="549" y="191" key="FileChooserDialogImpl" timestamp="1582131414304">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="549" y="191" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1582131414304" />
-    <state width="1493" height="223" key="GridCell.Tab.0.bottom" timestamp="1584220563712">
+    <state width="1493" height="223" key="GridCell.Tab.0.bottom" timestamp="1584383324278">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="223" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1584220563712" />
-    <state width="1493" height="223" key="GridCell.Tab.0.center" timestamp="1584220563712">
+    <state width="1493" height="223" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1584383324278" />
+    <state width="1493" height="223" key="GridCell.Tab.0.center" timestamp="1584383324277">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="223" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1584220563712" />
-    <state width="1493" height="223" key="GridCell.Tab.0.left" timestamp="1584220563711">
+    <state width="1493" height="223" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1584383324277" />
+    <state width="1493" height="223" key="GridCell.Tab.0.left" timestamp="1584383324277">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="223" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1584220563711" />
-    <state width="1493" height="223" key="GridCell.Tab.0.right" timestamp="1584220563712">
+    <state width="1493" height="223" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1584383324277" />
+    <state width="1493" height="223" key="GridCell.Tab.0.right" timestamp="1584383324277">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="223" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1584220563712" />
+    <state width="1493" height="223" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1584383324277" />
     <state x="439" y="138" key="NewModule_or_Project.wizard" timestamp="1582131417945">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
@@ -263,14 +259,18 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="249" y="59" key="SettingsEditor/0.0.1536.864@0.0.1536.864" timestamp="1581668456736" />
-    <state x="361" y="169" key="Vcs.Push.Dialog.v2" timestamp="1584093833518">
+    <state x="361" y="169" key="Vcs.Push.Dialog.v2" timestamp="1584220808162">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="361" y="169" key="Vcs.Push.Dialog.v2/0.0.1536.864@0.0.1536.864" timestamp="1584093833518" />
+    <state x="361" y="169" key="Vcs.Push.Dialog.v2/0.0.1536.864@0.0.1536.864" timestamp="1584220808162" />
     <state x="209" y="137" key="new project wizard" timestamp="1582108262714">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="209" y="137" key="new project wizard/0.0.1536.864@0.0.1536.864" timestamp="1582108262714" />
+    <state x="477" y="57" key="refactoring.ChangeSignatureDialog" timestamp="1584252639842">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="477" y="57" key="refactoring.ChangeSignatureDialog/0.0.1536.864@0.0.1536.864" timestamp="1584252639842" />
     <state x="431" y="181" key="search.everywhere.popup" timestamp="1584093495702">
       <screen x="0" y="0" width="1536" height="864" />
     </state>

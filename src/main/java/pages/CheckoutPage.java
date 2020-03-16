@@ -63,13 +63,13 @@ public class CheckoutPage extends PageObject{
 
     @FindBy(css="#order-details > ul > li:nth-child(2)")
     private WebElement confMsg;
-    public String paymentConfirmMessage() {
+    public String getPaymentConfirmation() {
         return confMsg.getText();
     }
 
 
 
-    public void fillInPersonalInfo(TestPerson p) {
+    public void enterPersonalInfo(TestPerson p) {
         if(p.getGender().equals("male"))
             mrRadio.click();
         else
@@ -78,16 +78,23 @@ public class CheckoutPage extends PageObject{
         lastnameInput.sendKeys(p.getLastName());
         emailInput.sendKeys(p.getGuestEmail());
         agreeRadio.click();
+        continueButton.click();
     }
 
-    public void fillInAdresses(TestPerson p) {
+    public void enterAdress(TestPerson p) {
         address1Input.sendKeys(p.getAddress());
         postCodeInput.sendKeys(p.getZipcode());
         cityInput.sendKeys(p.getCity());
         Select country = new Select(countrySelect);
         country.selectByVisibleText(p.getCountry());
         confirmAdressesButton.click();
+    }
 
+    // last step
+    public void payByCheck() {
+        payByCheckOption.click();
+        approveOption.click();
+        sendOrderButton.click();
     }
 
 }

@@ -42,6 +42,7 @@ public class SignInPage extends PageObject {
     public void save(){saveButton.click();}
     @FindBy(name="submitCreate")
     private WebElement createInput;
+
     public void submit(){createInput.click();}
 
     public boolean haveAccount() {
